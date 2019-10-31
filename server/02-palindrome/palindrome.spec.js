@@ -3,6 +3,10 @@ const isPalindrome = text => {
 	if (text === emptyString) {
 		throw new Error('empty strings are not palindromes')
 	}
+
+	if (!text || typeof text !== 'string') {
+		throw new Error('input must be a string')
+	}
 	let reversedText = text
 		.split(emptyString)
 		.reverse()
@@ -10,6 +14,7 @@ const isPalindrome = text => {
 
 	return reversedText === text
 }
+
 describe('the palindrome canary spec', () => {
 	it('shows the infrastructure works', () => {
 		expect(true).toBe(true)
@@ -35,12 +40,20 @@ describe('the palindrome canary spec', () => {
 		it('true for whitespace', () => {
 			expect(isPalindrome('    ')).toBe(true)
 		})
+
 		it('return error message "empty strings are not palindromes" for empty string', () => {
 			expect(() => {
 				isPalindrome('')
 			}).toThrowError('empty strings are not palindromes')
 		})
 
-		it.todo('error for not a string')
+		it.each([[undefined], [null], [123], [true], [{}], [Array(10).fill('aa')]])(
+			'error for not a string %s',
+			input => {
+				expect(() => {
+					isPalindrome(input)
+				}).toThrowError('input must be a string')
+			}
+		)
 	})
 })
