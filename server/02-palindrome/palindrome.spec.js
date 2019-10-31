@@ -1,4 +1,15 @@
 const isPalindrome = text => {
+	validate(text)
+	const emptyString = ''
+	let reversedText = text
+		.split(emptyString)
+		.reverse()
+		.join(emptyString)
+
+	return reversedText === text
+}
+
+const validate = text => {
 	const emptyString = ''
 	if (text === emptyString) {
 		throw new Error('empty strings are not palindromes')
@@ -7,12 +18,6 @@ const isPalindrome = text => {
 	if (!text || typeof text !== 'string') {
 		throw new Error('input must be a string')
 	}
-	let reversedText = text
-		.split(emptyString)
-		.reverse()
-		.join(emptyString)
-
-	return reversedText === text
 }
 
 describe('the palindrome canary spec', () => {
