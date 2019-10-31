@@ -1,3 +1,5 @@
-const fahrenheitToCelcius = () => {};
+const fahrenheitToCelcius = fahrenheit => {
+	return 0
+}
 
-module.exports = { fahrenheitToCelcius };
+module.exports = { fahrenheitToCelcius }

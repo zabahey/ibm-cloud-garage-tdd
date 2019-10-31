@@ -7,7 +7,9 @@ describe('the fahrenheit-2-celcius canary spec', () => {
 	})
 
 	describe.only('a fahrenheitToCelcius function should', () => {
-		it.todo('return 0 for 32')
+		it('fahrenheitToCelcius of 32 is 0', () => {
+			expect(fahrenheitToCelcius(32)).toBe(0)
+		})
 		it.todo('return 10 for 50')
 		it.todo('return 100 for 212')
 		it.todo('return -40 for -40')
