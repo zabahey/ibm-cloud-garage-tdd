@@ -6,7 +6,7 @@ describe('the fahrenheit-2-celcius canary spec', () => {
 		expect(true).toBe(true)
 	})
 
-	describe.only('a fahrenheitToCelcius function should', () => {
+	describe('a fahrenheitToCelcius function should', () => {
 		it.each([[32, 0], [212, 100], [50, 10], [-40, -40], [-459.67, -273.15]])(
 			'fahrenheitToCelcius of %d is %d',
 			(fahrenheit, celcius) => {
