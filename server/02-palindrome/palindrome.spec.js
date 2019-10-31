@@ -1,8 +1,12 @@
 const isPalindrome = text => {
-	let reversedText = ''
-	for (let index = text.length - 1; index >= 0; index--) {
-		reversedText += text[index]
+	const emptyString = ''
+	if (text === emptyString) {
+		throw new Error('empty strings are not palindromes')
 	}
+	let reversedText = text
+		.split(emptyString)
+		.reverse()
+		.join(emptyString)
 
 	return reversedText === text
 }
@@ -29,9 +33,14 @@ describe('the palindrome canary spec', () => {
 		})
 
 		it('true for whitespace', () => {
-			expect(isPalindrome(' ')).toBe(true)
+			expect(isPalindrome('    ')).toBe(true)
 		})
-		it.todo('error for empty string')
+		it('return error message "empty strings are not palindromes" for empty string', () => {
+			expect(() => {
+				isPalindrome('')
+			}).toThrowError('empty strings are not palindromes')
+		})
+
 		it.todo('error for not a string')
 	})
 })
