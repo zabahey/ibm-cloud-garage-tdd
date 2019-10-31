@@ -7,12 +7,11 @@ describe('the fahrenheit-2-celcius canary spec', () => {
 	})
 
 	describe.only('a fahrenheitToCelcius function should', () => {
-		it('fahrenheitToCelcius of 32 is 0', () => {
-			expect(fahrenheitToCelcius(32)).toBe(0)
-		})
-		it.todo('return 10 for 50')
-		it.todo('return 100 for 212')
-		it.todo('return -40 for -40')
-		it.todo('return -273.15 for -459.67')
+		it.each([[32, 0], [212, 100], [50, 10], [-40, -40], [-459.67, -273.15]])(
+			'fahrenheitToCelcius of %d is %d',
+			(fahrenheit, celcius) => {
+				expect(fahrenheitToCelcius(fahrenheit)).toBe(celcius)
+			}
+		)
 	})
 })
