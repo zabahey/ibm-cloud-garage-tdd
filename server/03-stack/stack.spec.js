@@ -1,6 +1,6 @@
 const { stack } = require('./stack')
 
-describe.only('the stack canary spec', () => {
+describe('the stack canary spec', () => {
 	it('shows the infrastructure works', () => {
 		expect(true).toBe(true)
 	})
