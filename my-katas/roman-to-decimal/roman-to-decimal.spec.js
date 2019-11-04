@@ -20,21 +20,22 @@ const romanToDecimal = romanSymbol => {
 		const currentRomanCharacter = romanSymbol[characterIndex]
 		const nextCharacter =
 			characterIndex + 1 < romanSymbol.length ? romanSymbol[characterIndex + 1] : ''
-		let skip =
-			!nextCharacter || getValueFrom(currentRomanCharacter) >= getValueFrom(nextCharacter) ? 1 : 2
-		if (getValueFrom(currentRomanCharacter) < getValueFrom(nextCharacter)) {
-			totalValue = totalValue + (getValueFrom(nextCharacter) - getValueFrom(currentRomanCharacter))
-		} else {
-			totalValue += getValueFrom(currentRomanCharacter)
-		}
+		const currentRomanSymbolDecimal = getValueFrom(currentRomanCharacter)
+		const nextRomanSymbolDecimal = getValueFrom(nextCharacter)
+		const currentValueIsLessThanNextValue = currentRomanSymbolDecimal < nextRomanSymbolDecimal
+		const value = currentValueIsLessThanNextValue
+			? nextRomanSymbolDecimal - currentRomanSymbolDecimal
+			: currentRomanSymbolDecimal
+		totalValue += value
 
+		let skip = !nextCharacter || !currentValueIsLessThanNextValue ? 1 : 2
 		characterIndex += skip
 	}
 
 	return totalValue
 }
 
-describe.only('roman to decimal canary test spec', () => {
+describe('roman to decimal canary test spec', () => {
 	it('shows the infrastructure works', () => {
 		expect(true).toBe(true)
 	})
