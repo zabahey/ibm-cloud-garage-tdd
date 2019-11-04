@@ -17,16 +17,19 @@ describe.only('roman to decimal canary test spec', () => {
 	})
 
 	describe('roman to decimal should', () => {
-		it('Input symbol I should return 1', () => {
-			expect(romanToDecimal('I')).toBe(1)
-		})
-
-		it('Input symbol V should return 5', () => {
-			expect(romanToDecimal('V')).toBe(5)
-		})
-
-		it('Input symbol X should return 10', () => {
-			expect(romanToDecimal('X')).toBe(10)
+		describe('input with one symbol', () => {
+			it.each`
+				romanSymbol | expected
+				${'I'}      | ${1}
+				${'V'}      | ${5}
+				${'X'}      | ${10}
+				${'L'}      | ${50}
+				${'C'}      | ${100}
+				${'D'}      | ${500}
+				${'M'}      | ${1000}
+			`('return $expected when input $romanSymbol', ({ romanSymbol, expected }) => {
+				expect(romanToDecimal(romanSymbol)).toBe(expected)
+			})
 		})
 	})
 })
