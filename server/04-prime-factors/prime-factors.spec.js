@@ -2,7 +2,7 @@ const findPrimeFactors = number => {
 	const primeFactors = []
 	if (number === 1) return primeFactors
 
-	if (number % 2 === 0) {
+	while (number % 2 === 0) {
 		primeFactors.push(2)
 		number /= 2
 	}
@@ -43,7 +43,10 @@ describe.only('the prime factors canary spec', () => {
 			expect(findPrimeFactors(7)).toEqual([7])
 		})
 
-		it.todo('return 2, 2, 2 for 8')
+		it('return 2, 2, 2 for 8', () => {
+			expect(findPrimeFactors(8)).toEqual([2, 2, 2])
+		})
+
 		it.todo('return 3, 3 for 9')
 	})
 })
