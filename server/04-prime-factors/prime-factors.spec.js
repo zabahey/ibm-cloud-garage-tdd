@@ -1,12 +1,15 @@
 const findPrimeFactors = number => {
 	const primeFactors = []
 	if (number === 1) return primeFactors
+	let divider = 2
+	while (number > 1) {
+		while (number % divider === 0) {
+			primeFactors.push(divider)
+			number /= divider
+		}
 
-	while (number % 2 === 0) {
-		primeFactors.push(2)
-		number /= 2
+		divider++
 	}
-	if (number > 1) primeFactors.push(number)
 	return primeFactors
 }
 
@@ -47,6 +50,16 @@ describe.only('the prime factors canary spec', () => {
 			expect(findPrimeFactors(8)).toEqual([2, 2, 2])
 		})
 
-		it.todo('return 3, 3 for 9')
+		it('return 3, 3 for 9', () => {
+			expect(findPrimeFactors(9)).toEqual([3, 3])
+		})
+
+		it('return 5,5 for 25', () => {
+			expect(findPrimeFactors(25)).toEqual([5, 5])
+		})
+
+		it('return [2,2,3,5,7,11] for 4620', () => {
+			expect(findPrimeFactors(4620)).toEqual([2, 2, 3, 5, 7, 11])
+		})
 	})
 })
