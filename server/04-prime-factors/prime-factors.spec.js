@@ -13,7 +13,7 @@ const findPrimeFactors = number => {
 	return primeFactors
 }
 
-describe.only('the prime factors canary spec', () => {
+describe('the prime factors canary spec', () => {
 	it('shows the infrastructure works', () => {
 		expect(true).toBe(true)
 	})
